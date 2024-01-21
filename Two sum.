@@ -1,0 +1,28 @@
+public class Solution 
+{
+    public int[] TwoSum(int[] nums, int target)
+    {
+        int[] Indices = new int[2];
+        int temp = 0;
+        for(ushort i = 0; i <= nums.Length - 1; i++)
+        {
+            for(ushort j = 0; j <= nums.Length - 1; j++)
+            { 
+                temp = nums[i];
+                if(target - nums[j] == temp)
+                {
+                    if(!(i == j))
+                    {
+
+                        Indices[0] = i;
+                        Indices[1] = j;
+                        break;
+                    }
+                }
+               
+            }
+        }
+        return Indices;
+
+    }
+}
