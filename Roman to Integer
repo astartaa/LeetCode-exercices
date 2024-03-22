@@ -1,0 +1,49 @@
+public class Solution 
+{
+    public int RomanToInt(string s) 
+    {
+        
+        int sum = 0;
+        sbyte c = 0;
+        sbyte cc = 1;
+        string con = String.Empty;
+        string end = String.Empty;
+        Dictionary<string, int> Rom = new Dictionary<string, int>() {{"IV", 4}, {"IX", 9}, {"XL", 40}, {"XC", 90}, {"CD", 400}, {"CM", 900}, {"I", 1}, {"V", 5}, {"X", 10},
+                                                                     {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000}};
+        List<string> sym = new List<string>();
+        if(s.Length > 1)
+        {
+            con = Char.ToString(s[c]) + Char.ToString(s[cc]);
+            end = Char.ToString(s[s.Length - 2]) + Char.ToString(s[s.Length - 1]);
+            while (cc < s.Length)
+            {
+                con = Char.ToString(s[c]) + Char.ToString(s[cc]);
+                if(con == "IV" || con == "IX" || con == "XL" || con == "XC" || con == "CD" || con == "CM")
+                {
+                    sym.Add(con);
+                    c += 2;
+                    cc += 2;
+                }
+                else
+                {
+                    sym.Add(Char.ToString(con[0]));
+                    c++;
+                    cc++;
+                }
+
+            }
+            if(!(end == "IV" || end == "IX" || end == "XL" || end == "XC" || end == "CD" || end == "CM"))
+                sym.Add(Char.ToString(s[s.Length - 1]));
+        }
+        else
+        {
+            sym.Add(s);
+        }
+        
+        foreach(string it in sym)
+        {
+            sum += Rom[it];
+        }
+        return sum;     
+    }
+}
